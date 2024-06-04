@@ -593,9 +593,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(4 4 10 / var(--tw-bg-opacity));
 }
-.bg-white {
+.bg-yellow {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  background-color: rgb(255 184 18 / var(--tw-bg-opacity));
 }
 .bg-\[\#230E0D\] {
   --tw-bg-opacity: 1;
@@ -603,7 +603,7 @@ video {
 }
 .bg-\[\#E495C9\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(228 149 201 / var(--tw-bg-opacity));
+  background-color: rgb(255 164 18 / var(--tw-bg-opacity));
 }
 .bg-\[\#220d23\] {
   --tw-bg-opacity: 1;
@@ -749,7 +749,7 @@ video {
 }
 .text-\[\#70757E\] {
   --tw-text-opacity: 1;
-  color: rgb(112 117 126 / var(--tw-text-opacity));
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .text-\[\#FB893E\] {
   --tw-text-opacity: 1;
@@ -917,12 +917,12 @@ body {
   animation: gradient-x 5s ease infinite;
   border-radius: 0.5rem;
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
-  --tw-gradient-from: #db2777;
-  --tw-gradient-to: rgba(219, 39, 119, 0);
+  --tw-gradient-from: #ffa32a;
+  --tw-gradient-to: rgba(255 184 18, 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-  --tw-gradient-to: rgba(37, 99, 235, 0);
-  --tw-gradient-stops: var(--tw-gradient-from), #2563eb, var(--tw-gradient-to);
-  --tw-gradient-to: #9333ea;
+  --tw-gradient-to: rgba(255, 189, 21, 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #ffa412, var(--tw-gradient-to);
+  --tw-gradient-to: #000000;
   opacity: 0.75;
   --tw-blur: blur(8px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
@@ -1036,7 +1036,7 @@ body {
   background-color: hsla(0, 0%, 100%, 0.9);
 }
 .hover\:bg-\[\#E495C9\]\/80:hover {
-  background-color: rgba(228, 149, 201, 0.8);
+  background-color: rgba(255 216 18, 0.8);
 }
 .hover\:text-gray-400\/90:hover {
   color: rgba(156, 163, 175, 0.9);
@@ -1247,3 +1247,69 @@ body {
 .__className_030150 {
   font-family: __X_030150, __X_Fallback_030150;
 }
+
+.yellow-gradient {
+  background: linear-gradient(90deg, #ffd012, #ffa412);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.yellow-gradient-2 {
+  background: linear-gradient(90deg, #ffd012, #ffa412 );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#container3D canvas {
+  width: 100vw !important;
+  height: 100vh !important;
+  position: absolute;
+  top: -10 !important;
+  left: 0 !important;
+}
+
+#apis {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem; /* Adjust as needed */
+}
+
+.apis-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.apis-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem; /* Increased gap between API cards */
+  justify-content: center;
+}
+
+.api-card {
+  background-color: transparent; /* Removed gray background */
+  border: 1px solid white; /* Added white border */
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  width: 15rem; /* Fixed width for API cards */
+}
+
+.api-card img {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.api-card h3 {
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.api-card p {
+  color: #a0aec0;
+}
+
+
