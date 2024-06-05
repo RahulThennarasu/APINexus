@@ -1311,12 +1311,14 @@ body {
 #container3D canvas {
   width: 100vw !important;
   height: 100vh !important;
-  position: absolute;
-  top: 10 !important;
-  left: 0 !important;
-  bottom: 10 !important;
-  right: 0 !important;
+  position: absolute; /* Change to fixed position */
+  top: 10; /* Position at the top of the viewport */
+  left: 0; /* Position at the left of the viewport */
+  z-index: -1; /* Set a negative z-index to position it behind other elements */
 }
+
+
+
 
 #apis {
   display: flex;
