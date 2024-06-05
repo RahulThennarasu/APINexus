@@ -1405,4 +1405,9 @@ textarea:focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5); /* White glow effect on focus */
 }
 
+.button {
+  margin-top: 2rem; /* Adjust this value as needed */
+}
+
+
 
