@@ -597,6 +597,14 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(255 184 18 / var(--tw-bg-opacity));
 }
+.bg-purple {
+  --tw-bg-opacity: 1;
+  background-color: rgb(18 93 255 / var(--tw-bg-opacity));
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
 .bg-blue {
   --tw-bg-opacity: 1;
   background-color: rgb(153 62 251 / var(--tw-bg-opacity));
@@ -916,6 +924,23 @@ body {
   bottom: -0.1875em;
   left: -0.1875em;
 }
+
+.gradient2-border {
+  position: absolute;
+  top: -0.1875em;
+  right: -0.1875em;
+  bottom: -0.1875em;
+  left: -0.1875em;
+}
+
+.gradient3-border {
+  position: absolute;
+  top: -0.1875em;
+  right: -0.1875em;
+  bottom: -0.1875em;
+  left: -0.1875em;
+}
+
 @keyframes gradient-x {
   0%,
   to {
@@ -965,6 +990,34 @@ body {
   --tw-gradient-to: rgba(255, 255, 255);
   --tw-gradient-stops: var(--tw-gradient-from), #ffffff, var(--tw-gradient-to);
   --tw-gradient-to: #ffffff;
+  opacity: 0.75;
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
+    var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate)
+    var(--tw-sepia) var(--tw-drop-shadow);
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 1s;
+}
+
+.gradient3-border {
+  animation: gradient-x 5s ease infinite;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #2a6eff;
+  --tw-gradient-to: rgba(56 111 252, 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: rgb(97, 39, 255);
+  --tw-gradient-stops: var(--tw-gradient-from), #412dfa, var(--tw-gradient-to);
+  --tw-gradient-to: #3721ff;
   opacity: 0.75;
   --tw-blur: blur(8px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
