@@ -42,11 +42,11 @@ loader.load(
         child.material = new THREE.MeshPhysicalMaterial({
           color: 0xffffff,
           metalness: 0,
-          roughness: 0.1,
+          roughness: 0,
           transparent: true,
-          opacity: 0.3,
+          opacity: 0.4,
           reflectivity: 1,
-          clearcoat: 1,
+          clearcoat: 5,
           clearcoatRoughness: 0.1
         });
       }

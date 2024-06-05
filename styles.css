@@ -749,7 +749,7 @@ video {
 }
 .text-\[\#70757E\] {
   --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+  color: rgb(112 117 126 / var(--tw-text-opacity));
 }
 .text-\[\#FB893E\] {
   --tw-text-opacity: 1;
@@ -1297,8 +1297,8 @@ body {
 }
 
 .api-card img {
-  width: 3rem;
-  height: 3rem;
+  width: auto;
+  height: auto;
   margin-bottom: 1rem;
 }
 
@@ -1311,5 +1311,26 @@ body {
 .api-card p {
   color: #a0aec0;
 }
+
+.logo-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffa32a; /* Example background color */
+  padding: 100px;
+  margin: 20px 0; /* Example margin */
+}
+
+.company-logo {
+  height: 50px; /* Example height for logos */
+  margin: 0 15px; /* Space between logos */
+  filter: grayscale(100%) brightness(0); /* Make logos black */
+  transition: transform 0.2s, filter 0.2s; /* Animation for hover effect and filter */
+}
+
+.company-logo:hover {
+  transform: scale(1.1); /* Slightly enlarge logo on hover */
+}
+
 
 
