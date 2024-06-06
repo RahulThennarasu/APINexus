@@ -417,51 +417,73 @@
     
         <script>
           document.addEventListener('DOMContentLoaded', function() {
-              const form = document.getElementById('api-form');
-              const apiContainer = document.querySelector('.apis-container .apis-grid');
-      
-              // Load existing API cards from localStorage on page load
-              let savedAPIs = JSON.parse(localStorage.getItem('savedAPIs')) || [];
-              savedAPIs.forEach(api => {
-                  apiContainer.insertAdjacentHTML('beforeend', api);
+            const form = document.getElementById('api-form');
+            const searchBar = document.getElementById('search-bar');
+          
+            searchBar.addEventListener('input', function() {
+              const query = searchBar.value.toLowerCase();
+              const apiCards = document.querySelectorAll('.api-card');
+          
+              apiCards.forEach(card => {
+                const apiName = card.querySelector('h3 a').textContent.toLowerCase();
+                const shortDescription = card.querySelector('p').textContent.toLowerCase();
+          
+                if (apiName.includes(query) || shortDescription.includes(query)) {
+                  card.style.display = 'block';
+                } else {
+                  card.style.display = 'none';
+                }
               });
-      
-              form.addEventListener('submit', function(event) {
-                  event.preventDefault(); // Prevent default form submission
-      
-                  // Get form data
-                  const formData = new FormData(form);
-      
-                  // Example: Create a new API card HTML
-                  const apiName = formData.get('api-name');
-                  const shortDescription = formData.get('short-description');
-                  const docUrl = formData.get('doc-url');
-                  const logoUrl = formData.get('logo-url');
-                  // Add more data as needed
-      
+            });
+          
+            form.addEventListener('submit', async function(event) {
+              event.preventDefault();
+          
+              const formData = {
+                apiName: document.getElementById('api-name').value,
+                shortDescription: document.getElementById('short-description').value,
+                docUrl: document.getElementById('doc-url').value,
+                logoUrl: document.getElementById('logo-url').value
+              };
+          
+              try {
+                const response = await fetch('/api/addApi', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(formData),
+                });
+          
+                if (response.ok) {
+                  const result = await response.json();
+          
                   const newApiCardHTML = `
-                      <div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
-                          <img src="${logoUrl}" alt="${apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
-                          <h3 class="text-xl font-semibold text-gray-100"><a href="${docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${apiName}</a></h3>
-                          <p class="text-gray-400 text-sm">${shortDescription}</p>
-                      </div>
+                    <div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
+                      <img src="${formData.logoUrl}" alt="${formData.apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
+                      <h3 class="text-xl font-semibold text-gray-100">
+                        <a href="${formData.docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${formData.apiName}</a>
+                      </h3>
+                      <p class="text-gray-400 text-sm">${formData.shortDescription}</p>
+                      <a href="#" class="text-[#E495C9] mt-4 inline-block hover:text-[#FB893E] transition-colors duration-150">Learn more</a>
+                    </div>
                   `;
-      
-                  // Append the new API card to the existing grid container
-                  
-      
-                  // Save the new API card to localStorage
-                  
-                  localStorage.setItem('savedAPIs', JSON.stringify(savedAPIs));
-      
-                  // Clear the form fields
+          
+                  const apiContainer = document.querySelector('.apis-container .apis-grid');
+                  apiContainer.insertAdjacentHTML('beforeend', newApiCardHTML);
+          
                   form.reset();
-              });
-      
-              // Add event listener to dynamically added remove buttons
-              
+                } else {
+                  console.error('Error adding API:', response.statusText);
+                }
+              } catch (error) {
+                console.error('Error adding API:', error);
+              }
+            });
           });
-      </script>
+          </script>
+          
+          
   </body>
 </html>
 <section id="future-improvements" class="py-20 mx-8 max-w-7xl md:mx-10 lg:mx-20 xl:mx-auto">
