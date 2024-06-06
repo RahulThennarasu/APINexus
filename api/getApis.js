@@ -1,6 +1,6 @@
 // pages/api/getApis.js
 
-import { connectToDatabase } from '../../utils/mongodb';
+import { connectToDatabase } from '../utils/mongodb';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
