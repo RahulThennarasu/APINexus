@@ -1,70 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+// signup.js
 
-const app = express();
+module.exports = async (req, res) => {
+  if (req.method === 'POST') {
+    const { username, email, password } = req.body;
 
-const port = process.env.PORT || 3000;
-const mongoUri = process.env.MONGODB_URI;
-const secretKey = process.env.SECRET_KEY;
+    // Here, you can perform validation and store user information in a database
+    // For simplicity, let's assume you're using MongoDB
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
+    // Code to save user data to MongoDB
 
-// MongoDB connection
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
-
-// User schema and model
-const userSchema = new mongoose.Schema({
-  username: String,
-  email: String,
-  password: String
-});
-
-const User = mongoose.model('User', userSchema);
-
-// Routes
-app.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const user = new User({ username, email, password: hashedPassword });
-
-  try {
-    await user.save();
-    res.status(201).send('User created');
-  } catch (err) {
-    res.status(400).send('Error creating user');
+    res.status(200).json({ message: 'User signed up successfully' });
+  } else {
+    res.status(405).json({ error: 'Method Not Allowed' });
   }
-});
-
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    return res.status(404).send('User not found');
-  }
-
-  const isPasswordValid = await bcrypt.compare(password, user.password);
-
-  if (!isPasswordValid) {
-    return res.status(401).send('Invalid password');
-  }
-
-  const token = jwt.sign({ userId: user._id }, secretKey);
-
-  res.status(200).json({ token });
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+};
