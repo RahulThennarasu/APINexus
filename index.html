@@ -369,85 +369,99 @@
                             <label for="api-name" class="block text-gray-400 text-sm font-bold mb-2">API Name:</label>
                             <input type="text" id="api-name" name="api-name" placeholder="Enter API Name" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="150" required>
                           </div>
+                        
                           <!-- Short Description -->
                           <div class="mb-4">
                             <label for="short-description" class="block text-gray-400 text-sm font-bold mb-2">Short Description:</label>
                             <textarea id="short-description" name="short-description" placeholder="Enter Short Description" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="400" rows="4" required></textarea>
                           </div>
+                        
                           <!-- Documentation URL -->
                           <div class="mb-4">
                             <label for="doc-url" class="block text-gray-400 text-sm font-bold mb-2">Documentation URL:</label>
                             <input type="url" id="doc-url" name="doc-url" placeholder="Enter Documentation URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
                           </div>
+                        
                           <!-- Logo URL -->
                           <div class="mb-4">
                             <label for="logo-url" class="block text-gray-400 text-sm font-bold mb-2">Logo URL:</label>
-                            <input type="url" id="logo-url" name="logo-url" placeholder="Enter Logo URL (Image Address)" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
+                            <input type="url" id="logo-url" name="logo-url" placeholder="Enter Logo URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
                           </div>
                           <!-- Submit Button -->
-                          <div class="mb-4 text-center">
-                            <!-- Add text-center class to center the content -->
-                            <button type="submit" class="relative inline-flex items-center h-10 gap-1 px-4 text-sm text-white font-semibold bg-blue divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20"> Submit API </button>
+                          <div class="mb-4 text-center"> <!-- Add text-center class to center the content -->
+        
+                            <button type="submit" class="relative inline-flex items-center h-10 gap-1 px-4 text-sm text-white font-semibold bg-blue border divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20">
+                              Submit API
+                            </button>
                           </div>
-                      </div>
-                      </form>
-                      <!-- API Cards Container -->
-                      <div class="apis-container">
-                        <!-- API Cards will be dynamically added here -->
-                      </div>
-                      <div class="mt-2 md:mt-8 lg:mt-0 flex justify-center text-[#70757E] animate-bounce">
-                        <a href="index.html" class="cursor-pointer">
-                          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="rotate-90" xmlns="http://www.w3.org/2000/svg">
-                            <title>Arrow back to home</title>
-                            <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                        </a>
-                      </div>
+                        </div>
+                        </form>
+                        <!-- API Cards Container -->
+                        <div class="apis-container">
+                            <!-- API Cards will be dynamically added here -->
+                        </div>
+    
+                        <div class="mt-2 md:mt-8 lg:mt-0 flex justify-center text-[#70757E] animate-bounce">
+                            <a href="index.html" class="cursor-pointer">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="rotate-90" xmlns="http://www.w3.org/2000/svg">
+                                    <title>Arrow back to home</title>
+                                    <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-      </main>
-    </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('api-form');
-        const apiContainer = document.querySelector('.apis-container .apis-grid');
-        // Load existing API cards from localStorage on page load
-        let savedAPIs = JSON.parse(localStorage.getItem('savedAPIs')) || [];
-        savedAPIs.forEach(api => {
-          apiContainer.insertAdjacentHTML('beforeend', api);
-        });
-        form.addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent default form submission
-          // Get form data
-          const formData = new FormData(form);
-          // Example: Create a new API card HTML
-          const apiName = formData.get('api-name');
-          const shortDescription = formData.get('short-description');
-          const docUrl = formData.get('doc-url');
-          const logoUrl = formData.get('logo-url');
-          // Add more data as needed
-          const newApiCardHTML = `
+            </main>
+        </div>
+    
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              const form = document.getElementById('api-form');
+              const apiContainer = document.querySelector('.apis-container .apis-grid');
+      
+              // Load existing API cards from localStorage on page load
+              let savedAPIs = JSON.parse(localStorage.getItem('savedAPIs')) || [];
+              savedAPIs.forEach(api => {
+                  apiContainer.insertAdjacentHTML('beforeend', api);
+              });
+      
+              form.addEventListener('submit', function(event) {
+                  event.preventDefault(); // Prevent default form submission
+      
+                  // Get form data
+                  const formData = new FormData(form);
+      
+                  // Example: Create a new API card HTML
+                  const apiName = formData.get('api-name');
+                  const shortDescription = formData.get('short-description');
+                  const docUrl = formData.get('doc-url');
+                  const logoUrl = formData.get('logo-url');
+                  // Add more data as needed
+      
+                  const newApiCardHTML = `
+                      <div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
+                          <img src="${logoUrl}" alt="${apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
+                          <h3 class="text-xl font-semibold text-gray-100"><a href="${docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${apiName}</a></h3>
+                          <p class="text-gray-400 text-sm">${shortDescription}</p>
+                      </div>
+                  `;
+      
+                  // Append the new API card to the existing grid container
                   
-																						<div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
-																							<img src="${logoUrl}" alt="${apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
-																							<h3 class="text-xl font-semibold text-gray-100">
-																								<a href="${docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${apiName}</a>
-																							</h3>
-																							<p class="text-gray-400 text-sm">${shortDescription}</p>
-																						</div>
-           `   
-          // Append the new API card to the existing grid container
-          apiContainer.insertAdjacentHTML('beforeend', newApiCardHTML);
-          // Save the new API card to localStorage
-          savedAPIs.push(newApiCardHTML);
-          localStorage.setItem('savedAPIs', JSON.stringify(savedAPIs));
-          // Clear the form fields
-          form.reset();
-        });
-        // Add event listener to dynamically added remove buttons
-      });
-    </script>
+      
+                  // Save the new API card to localStorage
+                  
+                  localStorage.setItem('savedAPIs', JSON.stringify(savedAPIs));
+      
+                  // Clear the form fields
+                  form.reset();
+              });
+      
+              // Add event listener to dynamically added remove buttons
+              
+          });
+      </script>
   </body>
 </html>
 <section id="future-improvements" class="py-20 mx-8 max-w-7xl md:mx-10 lg:mx-20 xl:mx-auto">
