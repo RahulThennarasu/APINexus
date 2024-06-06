@@ -22,13 +22,19 @@
       event.preventDefault(); // Prevent the default form submission
       
       // Get form data
-      const formData = new FormData(this);
+      const formData = {
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      };
 
       // Perform form validation and submission to the server
-      // Assuming you have an API endpoint to handle the sign-up process
-      fetch('rahulthennarasu.github.io/APINexus', {
+      fetch('https://api-nexus.vercel.app/signup', {
         method: 'POST',
-        body: formData
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
       })
       .then(response => {
         if (response.ok) {
