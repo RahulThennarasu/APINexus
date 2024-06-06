@@ -1,4 +1,4 @@
-// api/getApis.js
+// pages/api/getApis.js
 import { MongoClient } from 'mongodb';
 
 const uri = process.env.MONGODB_URI;
