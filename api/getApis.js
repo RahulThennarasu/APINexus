@@ -1,4 +1,4 @@
-// api/addApi.js
+// api/getApis.js
 import { MongoClient } from 'mongodb';
 
 const uri = process.env.MONGODB_URI;
@@ -16,23 +16,13 @@ async function connectToDatabase() {
 }
 
 export default async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const { apiName, shortDescription, docUrl, logoUrl } = req.body;
-
-  if (!apiName || !shortDescription || !docUrl || !logoUrl) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
   try {
     const client = await connectToDatabase();
     const db = client.db(dbName);
     const collection = db.collection('apis');
-    await collection.insertOne({ apiName, shortDescription, docUrl, logoUrl });
-    res.status(201).json({ message: 'API added successfully' });
+    const apis = await collection.find({}).toArray();
+    res.status(200).json(apis);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to add API' });
+    res.status(500).json({ error: 'Failed to fetch APIs' });
   }
 };

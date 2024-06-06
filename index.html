@@ -413,15 +413,15 @@
     document.addEventListener('DOMContentLoaded', async function() {
       const form = document.getElementById('api-form');
       const apiContainer = document.querySelector('.apis-container .apis-grid');
-
+  
       // Fetch APIs from the server
       async function fetchApis() {
         try {
           const response = await fetch('/api/getApis');
           const apis = await response.json();
-
+  
           apiContainer.innerHTML = ''; // Clear existing APIs
-
+  
           apis.forEach(api => {
             const apiCardHTML = `
               <div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
@@ -433,26 +433,26 @@
                 <a href="#" class="text-[#E495C9] mt-4 inline-block hover:text-[#FB893E] transition-colors duration-150">Learn more</a>
               </div>
             `;
-
+  
             apiContainer.insertAdjacentHTML('beforeend', apiCardHTML);
           });
         } catch (error) {
           console.error('Error fetching APIs:', error);
         }
       }
-
+  
       await fetchApis(); // Fetch APIs on page load
-
+  
       form.addEventListener('submit', async function(event) {
         event.preventDefault();
-
+  
         const formData = {
           apiName: document.getElementById('api-name').value,
           shortDescription: document.getElementById('short-description').value,
           docUrl: document.getElementById('doc-url').value,
           logoUrl: document.getElementById('logo-url').value
         };
-
+  
         try {
           const response = await fetch('/api/addApi', {
             method: 'POST',
@@ -461,7 +461,7 @@
             },
             body: JSON.stringify(formData),
           });
-
+  
           if (response.ok) {
             await fetchApis(); // Refresh the API list after adding a new API
             form.reset();
@@ -474,6 +474,8 @@
       });
     });
   </script>
+  
+  
 </body>
 </html>
 
