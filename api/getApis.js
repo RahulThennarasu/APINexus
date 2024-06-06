@@ -8,14 +8,13 @@ let cachedClient = null;
 
 async function connectToDatabase() {
   if (cachedClient) return cachedClient;
-
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
   await client.connect();
   cachedClient = client;
   return client;
 }
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   try {
     const client = await connectToDatabase();
     const db = client.db(dbName);
@@ -25,4 +24,4 @@ export default async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch APIs' });
   }
-};
+}
