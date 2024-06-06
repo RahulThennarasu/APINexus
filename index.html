@@ -433,7 +433,7 @@
       // Fetch APIs from the server
       async function fetchApis() {
         try {
-          const response = await fetch('/api/getApis');
+          const response = await fetch('api/getApis.js');
           const apis = await response.json();
   
           apiContainer.innerHTML = ''; // Clear existing APIs
@@ -459,7 +459,7 @@
         };
   
         try {
-          const response = await fetch('/api/addApi', {
+          const response = await fetch('api/addApi.js', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
