@@ -446,18 +446,6 @@
           form.reset();
         });
         // Add event listener to dynamically added remove buttons
-        apiContainer.addEventListener('click', function(event) {
-          if (event.target.classList.contains('remove-api-btn')) {
-            const cardToRemove = event.target.closest('.api-card');
-            cardToRemove.remove();
-            // Remove the card from the savedAPIs array in localStorage
-            const cardIndex = savedAPIs.indexOf(cardToRemove.outerHTML);
-            if (cardIndex !== -1) {
-              savedAPIs.splice(cardIndex, 1);
-              localStorage.setItem('savedAPIs', JSON.stringify(savedAPIs));
-            }
-          }
-        });
       });
     </script>
   </body>
