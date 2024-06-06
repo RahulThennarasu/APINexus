@@ -8,18 +8,15 @@ if (!client) {
 }
 
 module.exports = async (req, res) => {
-  if (req.method === 'POST') {
+  if (req.method === 'GET') {
     try {
       if (!client.isConnected()) await client.connect();
       const db = client.db('apinexus');
       const collection = db.collection('apis');
 
-      const { apiName, shortDescription, docUrl, logoUrl } = req.body;
-      const newApi = { apiName, shortDescription, docUrl, logoUrl };
+      const apis = await collection.find({}).toArray();
 
-      const result = await collection.insertOne(newApi);
-
-      res.status(200).json({ message: 'API added successfully', result });
+      res.status(200).json(apis);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
