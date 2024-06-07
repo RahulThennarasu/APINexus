@@ -394,29 +394,40 @@
     </a>
 </div>
 <script>
-    document.getElementById('api-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const apiData = {
-            api_name: formData.get('api_name'),
-            short_description: formData.get('short_description'),
-            doc_url: formData.get('doc_url'),
-            logo_url: formData.get('logo_url')
-        };
-        fetch('/post', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(apiData)
-        }).then(response => response.json()).then(data => {
-            if (data.success) {
-                displayApiCard(apiData);
-            } else {
-                alert('Failed to save API data.');
-            }
-        });
+    document.getElementById('api-form').addEventListener('submit', async function(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const apiData = {
+    api_name: formData.get('api-name'),
+    short_description: formData.get('short-description'),
+    doc_url: formData.get('doc-url'),
+    logo_url: formData.get('logo-url')
+  };
+  
+  try {
+    const response = await fetch('/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(apiData)
     });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      // Success handling, e.g., display a success message or update UI
+      console.log(data);
+    } else {
+      // Error handling, e.g., display an error message or revert changes
+      console.error(data.error);
+    }
+  } catch (error) {
+    // Error handling for network or other issues
+    console.error(error);
+  }
+});
+
 
     function displayApiCard(apiData) {
         const apisGrid = document.querySelector('.apis-grid');
