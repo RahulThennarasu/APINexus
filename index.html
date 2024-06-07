@@ -352,7 +352,7 @@
     <title>API Form</title>
 </head>
 <body>
-  <form id="api-form" action="/post" method="post">
+  <form id="api-form">
     <!-- API Name -->
     <div class="mb-4">
         <label for="api-name" class="block text-gray-400 text-sm font-bold mb-2">API Name:</label>
@@ -403,6 +403,12 @@
             doc_url: formData.get('doc_url'),
             logo_url: formData.get('logo_url')
         };
+
+        if (!apiData.api_name || !apiData.short_description || !apiData.doc_url || !apiData.logo_url) {
+            alert('Please fill in all the fields.');
+            return;
+        }
+
         fetch('/post', {
             method: 'POST',
             headers: {
@@ -415,7 +421,7 @@
             } else {
                 alert('Failed to save API data.');
             }
-        });
+        }).catch(error => console.error('Error:', error));
     });
 
     function displayApiCard(apiData) {
@@ -438,7 +444,7 @@
             data.apis.forEach(api => {
                 displayApiCard(api);
             });
-        });
+        }).catch(error => console.error('Error:', error));
     });
 </script>
 </body>
