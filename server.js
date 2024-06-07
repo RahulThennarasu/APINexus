@@ -1,14 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const port = 3019;
 
 const app = express();
 app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/students', {
+// MongoDB URI (replace 'YOUR_USERNAME' and 'YOUR_PASSWORD' with your MongoDB Atlas username and password)
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://jay:lego3011@cluster0.nwodlv5.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -18,6 +19,7 @@ db.once('open', () => {
   console.log("MongoDB connection successful");
 });
 
+// Define Schema and Model
 const userSchema = new mongoose.Schema({
   api_name: String,
   short_description: String,
@@ -27,6 +29,7 @@ const userSchema = new mongoose.Schema({
 
 const Users = mongoose.model("data", userSchema);
 
+// Routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -64,6 +67,7 @@ app.get('/api/get', async (req, res) => {
   }
 });
 
+// Start the server
 app.listen(port, () => {
   console.log("Server Started on port", port);
 });
