@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // MongoDB URI (replace 'YOUR_USERNAME' and 'YOUR_PASSWORD' with your MongoDB Atlas username and password)
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://jay:lego3011@cluster0.nwodlv5.mongodb.net/?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://<jay>:<lego3011>@cluster0.nwodlv5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
