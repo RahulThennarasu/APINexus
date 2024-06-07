@@ -62,26 +62,23 @@
                 <!-- Add API Button -->
                 <div class="relative group">
                   <div class="gradient2-border"></div>
-                  <a href="#api-add-section" onclick="scrollToExploreAPIs()"  class="relative inline-flex items-center text-sm h-10 gap-1 bg-white px-4 text-sm font-semibold  divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20">
-                    Add API
-                        <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
+                  <a href="#api-add-section" onclick="scrollToExploreAPIs()" class="relative inline-flex items-center text-sm h-10 gap-1 bg-white px-4 text-sm font-semibold  divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20"> Add API <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
                     </span>
                   </a>
-                </div>     
+                </div>
                 <!-- Login Button -->
                 <div class="relative group">
                   <div class="gradient3-border"></div>
-                  <a href="login.html" target="_blank" class="relative inline-flex items-center h-10 gap-1 px-4 text-sm font-semibold bg-purple  divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20"> Log In 
-                    <span class="text-[#70757E] animate-point-x">
+                  <a href="login.html" target="_blank" class="relative inline-flex items-center h-10 gap-1 px-4 text-sm font-semibold bg-purple  divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20"> Log In <span class="text-[#70757E] animate-point-x">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </span>
                   </a>
-                </div>           
+                </div>
                 <!-- Sign Up Button -->
                 <div class="relative group">
                   <div class="gradient-border"></div>
@@ -94,7 +91,6 @@
                   </a>
                 </div>
               </div>
-              
             </header>
             <div class="max-w-3xl mx-4 md:mx-auto">
               <div class="text-center">
@@ -148,24 +144,21 @@
             </div>
             <style>
               #search-bar {
-                width: 20rem; /* Adjust width as needed */
+                width: 20rem;
+                /* Adjust width as needed */
               }
             </style>
-            
             <script>
               document.addEventListener('DOMContentLoaded', function() {
                 const form = document.getElementById('api-form');
                 const searchBar = document.getElementById('search-bar');
-              
                 // Function to filter API cards
                 searchBar.addEventListener('input', function() {
                   const query = searchBar.value.toLowerCase();
                   const apiCards = document.querySelectorAll('.api-card');
-              
                   apiCards.forEach(card => {
                     const apiName = card.querySelector('h3 a').textContent.toLowerCase();
                     const shortDescription = card.querySelector('p').textContent.toLowerCase();
-              
                     if (apiName.includes(query) || shortDescription.includes(query)) {
                       card.style.display = 'block';
                     } else {
@@ -173,72 +166,68 @@
                     }
                   });
                 });
-              
                 form.addEventListener('submit', function(event) {
                   event.preventDefault(); // Prevent default form submission
-              
                   // Get form data
                   const formData = new FormData(form);
-              
                   // Create a new API card HTML
                   const apiName = formData.get('api-name');
                   const shortDescription = formData.get('short-description');
                   const docUrl = formData.get('doc-url');
                   const logoUrl = formData.get('logo-url');
-                  
                   const newApiCardHTML = `
-                    <div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
-                      <img src="${logoUrl}" alt="${apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
-                      <h3 class="text-xl font-semibold text-gray-100">
-                        <a href="${docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${apiName}</a>
-                      </h3>
-                      <p class="text-gray-400 text-sm">${shortDescription}</p>
-                      <a href="#" class="text-[#E495C9] mt-4 inline-block hover:text-[#FB893E] transition-colors duration-150">Learn more</a>
-                    </div>
+                    
+						<div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
+							<img src="${logoUrl}" alt="${apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
+							<h3 class="text-xl font-semibold text-gray-100">
+								<a href="${docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${apiName}</a>
+							</h3>
+							<p class="text-gray-400 text-sm">${shortDescription}</p>
+							<a href="#" class="text-[#E495C9] mt-4 inline-block hover:text-[#FB893E] transition-colors duration-150">Learn more</a>
+						</div>
                   `;
-                  
                   // Append the new API card to the container
                   const apiContainer = document.querySelector('.apis-container .apis-grid');
                   apiContainer.insertAdjacentHTML('beforeend', newApiCardHTML);
-              
                   // Save the new API card data in localStorage
                   saveApiData(apiName, shortDescription, docUrl, logoUrl);
-              
                   // Clear the form fields
                   form.reset();
                 });
-              
                 // Function to save API data to localStorage
                 function saveApiData(apiName, shortDescription, docUrl, logoUrl) {
                   const apiData = JSON.parse(localStorage.getItem('apiData')) || [];
-                  apiData.push({ apiName, shortDescription, docUrl, logoUrl });
+                  apiData.push({
+                    apiName,
+                    shortDescription,
+                    docUrl,
+                    logoUrl
+                  });
                   localStorage.setItem('apiData', JSON.stringify(apiData));
                 }
-              
                 // Function to load API data from localStorage
                 function loadApiData() {
                   const apiData = JSON.parse(localStorage.getItem('apiData')) || [];
                   const apiContainer = document.querySelector('.apis-container .apis-grid');
                   apiData.forEach(api => {
                     const newApiCardHTML = `
-                      <div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
-                        <img src="${api.logoUrl}" alt="${api.apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
-                        <h3 class="text-xl font-semibold text-gray-100">
-                          <a href="${api.docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${api.apiName}</a>
-                        </h3>
-                        <p class="text-gray-400 text-sm">${api.shortDescription}</p>
-                        <a href="#" class="text-[#E495C9] mt-4 inline-block hover:text-[#FB893E] transition-colors duration-150">Learn more</a>
-                      </div>
+                      
+						<div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
+							<img src="${api.logoUrl}" alt="${api.apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
+							<h3 class="text-xl font-semibold text-gray-100">
+								<a href="${api.docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${api.apiName}</a>
+							</h3>
+							<p class="text-gray-400 text-sm">${api.shortDescription}</p>
+							<a href="#" class="text-[#E495C9] mt-4 inline-block hover:text-[#FB893E] transition-colors duration-150">Learn more</a>
+						</div>
                     `;
                     apiContainer.insertAdjacentHTML('beforeend', newApiCardHTML);
                   });
                 }
-              
                 // Load API data when the page loads
                 loadApiData();
               });
-              </script>
-              
+            </script>
             <section id="apis" class="py-20 mx-8 max-w-7xl md:mx-10 lg:mx-20 xl:mx-auto">
               <div class="apis-container">
                 <div class="apis-grid">
@@ -328,166 +317,140 @@
               <img src="images/company/github.png" alt="Company 3 Logo" class="company-logo">
               <!-- Add more logos as needed -->
             </div>
-            
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add API - APINexus</title>
-  <link rel="stylesheet" href="styles.css">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Add API - APINexus</title>
+            <link rel="stylesheet" href="styles.css">
+            </head>
+            <body class="bg-[#04040A]">
+              <div id="__next">
+                <main class="__className_030150">
+                  <div class="h-full">
+                    <div class="flex flex-col max-w-5xl px-4 mx-auto sm:px-8 md:max-w-6xl">
+                      <section id="api-add-section">
+                        <div class="max-w-3xl mx-4 md:mx-auto">
+                          <div class="text-center">
+                            <span class="text-[#993EFB] my-2 animate-header-slide-down-fade bg-[#160E26] inline-flex h-6 cursor-default select-none items-center whitespace-nowrap rounded-full px-2 text-xs">Empowering Innovators</span>
+                            <h1 class="mb-8 text-4xl font-medium text-transparent animate-header-slide-down-fade blue-gradient bg-clip-text sm:text-5xl md:text-6xl"> Inspire <br class="hidden sm:inline" /> The Future with <br class="hidden sm:inline" /> Your APIs. </h1>
+                            <h2 class="mb-4 text-lg animate-header-slide-down-fade md:text-2xl md:mx-10 text-gray-400/75">Join our vibrant community and contribute to the development of tomorrow's technologies. <span class="text-transparent blue-gradient bg-clip-text">Your API</span> could be the key to unlocking new possibilities and revolutionizing industries. </h2>
+                            <h3 class="mb-8 text-lg animate-hero-text-slide-up-fade md:text-xl md:mx-16 text-gray-400/75">At APINexus, we believe in the power of innovation to drive positive change and shape a better future for all. </h3>
+                          </div>
+                        </div>
+                      </section>
+                      <script>
+                        function scrollToAPIs() {
+                          document.getElementById('add-api-section').scrollIntoView({
+                            behavior: 'smooth'
+                          });
+                        }
+                      </script>
+                      <!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Form</title>
 </head>
-<body class="bg-[#04040A]">
-  <div id="__next">
-    <main class="__className_030150">
-      <div class="h-full">
-        <div class="flex flex-col max-w-5xl px-4 mx-auto sm:px-8 md:max-w-6xl">
-          <section id="api-add-section">
-            <div class="max-w-3xl mx-4 md:mx-auto">
-              <div class="text-center">
-                <span class="text-[#993EFB] my-2 animate-header-slide-down-fade bg-[#160E26] inline-flex h-6 cursor-default select-none items-center whitespace-nowrap rounded-full px-2 text-xs">Empowering Innovators</span>
-                <h1 class="mb-8 text-4xl font-medium text-transparent animate-header-slide-down-fade blue-gradient bg-clip-text sm:text-5xl md:text-6xl"> Inspire <br class="hidden sm:inline" /> The Future with <br class="hidden sm:inline" /> Your APIs. </h1>
-                <h2 class="mb-4 text-lg animate-header-slide-down-fade md:text-2xl md:mx-10 text-gray-400/75">Join our vibrant community and contribute to the development of tomorrow's technologies.
-                  <span class="text-transparent blue-gradient bg-clip-text">Your API</span>
-                  could be the key to unlocking new possibilities and revolutionizing industries.
-                </h2>
-                <h3 class="mb-8 text-lg animate-hero-text-slide-up-fade md:text-xl md:mx-16 text-gray-400/75">At APINexus, we believe in the power of innovation to drive positive change and shape a better future for all. </h3>
-              </div>
-            </div>
-          </section>
-          <script>
-            function scrollToAPIs() {
-              document.getElementById('add-api-section').scrollIntoView({
-                behavior: 'smooth'
-              });
-            }
-          </script>
-          <form id="api-form">
-            <!-- API Name -->
-            <div class="mb-4">
-              <label for="api-name" class="block text-gray-400 text-sm font-bold mb-2">API Name:</label>
-              <input type="text" id="api-name" name="api-name" placeholder="Enter API Name" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="150" required>
-            </div>
-
-            <!-- Short Description -->
-            <div class="mb-4">
-              <label for="short-description" class="block text-gray-400 text-sm font-bold mb-2">Short Description:</label>
-              <textarea id="short-description" name="short-description" placeholder="Enter Short Description" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="400" rows="4" required></textarea>
-            </div>
-
-            <!-- Documentation URL -->
-            <div class="mb-4">
-              <label for="doc-url" class="block text-gray-400 text-sm font-bold mb-2">Documentation URL:</label>
-              <input type="url" id="doc-url" name="doc-url" placeholder="Enter Documentation URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
-            </div>
-
-            <!-- Logo URL -->
-            <div class="mb-4">
-              <label for="logo-url" class="block text-gray-400 text-sm font-bold mb-2">Logo URL:</label>
-              <input type="url" id="logo-url" name="logo-url" placeholder="Enter Logo URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
-            </div>
-            <!-- Submit Button -->
-            <div class="mb-4 text-center">
-              <button type="submit" class="relative inline-flex items-center h-10 gap-1 px-4 text-sm text-white font-semibold bg-blue border divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20">
-                Submit API
-              </button>
-            </div>
-          </form>
-          <!-- API Cards Container -->
-          <div class="apis-container">
-            <div class="apis-grid">
-              <!-- API Cards will be dynamically added here -->
-            </div>
-          </div>
-          <div class="mt-2 md:mt-8 lg:mt-0 flex justify-center text-[#70757E] animate-bounce">
-            <a href="index.html" class="cursor-pointer">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="rotate-90" xmlns="http://www.w3.org/2000/svg">
-                <title>Arrow back to home</title>
-                <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', async function() {
-      const form = document.getElementById('api-form');
-      const apiContainer = document.querySelector('.apis-container .apis-grid');
-  
-      // Function to add a single API card
-      function addApiCard(api) {
-        const apiCardHTML = `
-          <div class="bg-[#1E212D] rounded-lg p-6 w-72 mb-8 mr-8 api-card">
-            <img src="${api.logoUrl}" alt="${api.apiName} Logo" class="w-12 h-12 mx-auto mb-4" />
-            <h3 class="text-xl font-semibold text-gray-100">
-              <a href="${api.docUrl}" class="text-[#E495C9] hover:text-[#FB893E] transition-colors duration-150">${api.apiName}</a>
-            </h3>
-            <p class="text-gray-400 text-sm">${api.shortDescription}</p>
-            <a href="#" class="text-[#E495C9] mt-4 inline-block hover:text-[#FB893E] transition-colors duration-150">Learn more</a>
-          </div>
-        `;
-  
-        apiContainer.insertAdjacentHTML('beforeend', apiCardHTML);
-      }
-  
-      // Fetch APIs from the server
-      async function fetchApis() {
-        try {
-          const response = await fetch('api/getApis.js');
-          const apis = await response.json();
-  
-          apiContainer.innerHTML = ''; // Clear existing APIs
-  
-          apis.forEach(api => {
-            addApiCard(api); // Add each API card individually
-          });
-        } catch (error) {
-          console.error('Error fetching APIs:', error);
-        }
-      }
-  
-      await fetchApis(); // Fetch APIs on page load
-  
-      form.addEventListener('submit', async function(event) {
+<body>
+  <form id="api-form">
+    <!-- API Name -->
+    <div class="mb-4">
+        <label for="api-name" class="block text-gray-400 text-sm font-bold mb-2">API Name:</label>
+        <input type="text" id="api-name" name="api_name" placeholder="Enter API Name" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="150" required>
+    </div>
+    <!-- Short Description -->
+    <div class="mb-4">
+        <label for="short-description" class="block text-gray-400 text-sm font-bold mb-2">Short Description:</label>
+        <textarea id="short-description" name="short_description" placeholder="Enter Short Description" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="400" rows="4" required></textarea>
+    </div>
+    <!-- Documentation URL -->
+    <div class="mb-4">
+        <label for="doc-url" class="block text-gray-400 text-sm font-bold mb-2">Documentation URL:</label>
+        <input type="url" id="doc-url" name="doc_url" placeholder="Enter Documentation URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
+    </div>
+    <!-- Logo URL -->
+    <div class="mb-4">
+        <label for="logo-url" class="block text-gray-400 text-sm font-bold mb-2">Logo URL:</label>
+        <input type="url" id="logo-url" name="logo_url" placeholder="Enter Logo URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
+    </div>
+    <!-- Submit Button -->
+    <div class="mb-4 text-center">
+        <button type="submit" class="relative inline-flex items-center h-10 gap-1 px-4 text-sm text-white font-semibold bg-blue border divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20">Submit API</button>
+    </div>
+</form>
+<!-- API Cards Container -->
+<div class="apis-container">
+    <div class="apis-grid">
+        <!-- API Cards will be dynamically added here -->
+    </div>
+</div>
+<div class="mt-2 md:mt-8 lg:mt-0 flex justify-center text-[#70757E] animate-bounce">
+    <a href="index.html" class="cursor-pointer">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="rotate-90" xmlns="http://www.w3.org/2000/svg">
+            <title>Arrow back to home</title>
+            <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </a>
+</div>
+<script>
+    document.getElementById('api-form').addEventListener('submit', function(event) {
         event.preventDefault();
-  
-        const formData = {
-          apiName: document.getElementById('api-name').value,
-          shortDescription: document.getElementById('short-description').value,
-          docUrl: document.getElementById('doc-url').value,
-          logoUrl: document.getElementById('logo-url').value
+        const formData = new FormData(event.target);
+        const apiData = {
+            api_name: formData.get('api_name'),
+            short_description: formData.get('short_description'),
+            doc_url: formData.get('doc_url'),
+            logo_url: formData.get('logo_url')
         };
-  
-        try {
-          const response = await fetch('api/addApi.js', {
+
+        if (!apiData.api_name || !apiData.short_description || !apiData.doc_url || !apiData.logo_url) {
+            alert('Please fill in all the fields.');
+            return;
+        }
+
+        fetch('/post', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData),
-          });
-  
-          if (response.ok) {
-            const newApi = await response.json(); // Get the newly added API from the response
-            addApiCard(newApi); // Add the newly added API card
-            form.reset();
-          } else {
-            console.error('Error adding API:', response.statusText);
-          }
-        } catch (error) {
-          console.error('Error adding API:', error);
-        }
-      });
+            body: JSON.stringify(apiData)
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                displayApiCard(apiData);
+            } else {
+                alert('Failed to save API data.');
+            }
+        }).catch(error => console.error('Error:', error));
     });
-  </script>
-  
-  
-  
-  
-  
-</body>
-</html>
 
+    function displayApiCard(apiData) {
+        const apisGrid = document.querySelector('.apis-grid');
+        const apiCard = document.createElement('div');
+        apiCard.classList.add('api-card');
+        apiCard.innerHTML = `
+            <div class="api-card-content">
+                <img src="${apiData.logo_url}" alt="${apiData.api_name} Logo" class="api-logo">
+                <h3 class="api-name">${apiData.api_name}</h3>
+                <p class="api-description">${apiData.short_description}</p>
+                <a href="${apiData.doc_url}" target="_blank" class="api-doc-url">Documentation</a>
+            </div>
+        `;
+        apisGrid.appendChild(apiCard);
+    }
+
+    window.addEventListener('load', function() {
+        fetch('/api/get').then(response => response.json()).then(data => {
+            data.apis.forEach(api => {
+                displayApiCard(api);
+            });
+        }).catch(error => console.error('Error:', error));
+    });
+</script>
+</body>
+
+
+</html>
 </html>
 <section id="future-improvements" class="py-20 mx-8 max-w-7xl md:mx-10 lg:mx-20 xl:mx-auto">
   <div class="space-y-16 md:space-y-24">
@@ -495,8 +458,7 @@
       <div class="md:text-center">
         <span class="text-[#CEA0D1] my-2 bg-[#220d23] inline-flex h-6 cursor-default select-none items-center whitespace-nowrap rounded-full px-2 text-xs">Join the Conversation</span>
         <h1 class="mb-4 text-3xl font-medium text-gray-100 md:text-5xl">Future Improvements & Community Showcase</h1>
-        <h2 class="max-w-2xl mx-auto text-lg md:text-xl text-gray-400/75">We're committed to continuously improving our platform based on your feedback and suggestions. Share your ideas for future improvements and showcase what you've built with our APIs in our community forum.
-        </h2>
+        <h2 class="max-w-2xl mx-auto text-lg md:text-xl text-gray-400/75">We're committed to continuously improving our platform based on your feedback and suggestions. Share your ideas for future improvements and showcase what you've built with our APIs in our community forum. </h2>
         <p class="max-w-2xl mx-auto mt-4 text-lg md:text-xl text-gray-400/75">Have a feature request, bug report, or just want to show off your latest project? Join the discussion and connect with other developers!</p>
         <div class="mt-8 md:mt-12">
           <a href="mailto:rahulthennarasu07@email.com" class="inline-block px-10 py-3 text-lg font-semibold text-white bg-blue rounded-md hover:bg-yellow/90" style="position: relative; top: 40px;">Email to have a chance to be displayed</a>
@@ -505,7 +467,6 @@
     </div>
   </div>
 </section>
-
 <div class="max-w-full mx-auto">
   <div class="px-10 py-14 md:py-32 md:text-center bg-cover bg-[url(&#x27;/images/gradient.png&#x27;)]">
     <h1 class="mb-6 text-3xl font-medium text-center text-white md:text-6xl">Traverse <br class="sm:hidden" />
