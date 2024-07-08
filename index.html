@@ -322,32 +322,26 @@
                           });
                         }
                       </script>
-                      <form id="api-form" action="/post" method="post">
-                        <!-- API Name -->
-                        <div class="mb-4">
-                            <label for="api_name" class="block text-gray-400 text-sm font-bold mb-2">API Name:</label>
-                            <input type="text" id="api_name" name="api_name" placeholder="Enter API Name" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="150" required>
-                        </div>
-                        <!-- Short Description -->
-                        <div class="mb-4">
-                            <label for="short_description" class="block text-gray-400 text-sm font-bold mb-2">Short Description:</label>
-                            <textarea id="short_description" name="short_description" placeholder="Enter Short Description" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="400" rows="4" required></textarea>
-                        </div>
-                        <!-- Documentation URL -->
-                        <div class="mb-4">
-                            <label for="doc_url" class="block text-gray-400 text-sm font-bold mb-2">Documentation URL:</label>
-                            <input type="url" id="doc_url" name="doc_url" placeholder="Enter Documentation URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
-                        </div>
-                        <!-- Logo URL -->
-                        <div class="mb-4">
-                            <label for="logo_url" class="block text-gray-400 text-sm font-bold mb-2">Logo URL:</label>
-                            <input type="url" id="logo_url" name="logo_url" placeholder="Enter Logo URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
-                        </div>
-                        <!-- Submit Button -->
-                        <div class="mb-4 text-center">
-                            <button type="submit" class="relative inline-flex items-center h-10 gap-1 px-4 text-sm text-white font-semibold bg-blue border divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20">Submit API</button>
-                        </div>
-                    </form>
+                     <form id="api-form" action="/post" method="post">
+                      <!-- API Name -->
+                      <label for="api_name">API Name:</label>
+                      <input type="text" id="api_name" name="api_name" required><br><br>
+              
+                      <!-- Short Description -->
+                      <label for="short_description">Short Description:</label><br>
+                      <textarea id="short_description" name="short_description" rows="4" required></textarea><br><br>
+              
+                      <!-- Documentation URL -->
+                      <label for="doc_url">Documentation URL:</label><br>
+                      <input type="url" id="doc_url" name="doc_url" required><br><br>
+              
+                      <!-- Logo URL -->
+                      <label for="logo_url">Logo URL:</label><br>
+                      <input type="url" id="logo_url" name="logo_url" required><br><br>
+              
+                      <!-- Submit Button -->
+                      <button type="submit">Submit</button>
+                  </form>
                     <!-- API Cards Container -->
                     <div class="apis-container">
                         <div class="apis-grid">
