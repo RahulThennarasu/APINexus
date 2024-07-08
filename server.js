@@ -10,13 +10,12 @@ app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-    console.log("MongoDB connection successful");
-});
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("MongoDB connection successful"))
+    .catch((err) => {
+        console.error("MongoDB connection error: ", err);
+        process.exit(1);
+    });
 
 const userSchema = new mongoose.Schema({
     api_name: String,
@@ -45,7 +44,7 @@ app.post('/post', async (req, res) => {
         console.log(user);
         res.send({ success: true });
     } catch (error) {
-        console.error(error);
+        console.error("Error saving user: ", error);
         res.send({ success: false });
     }
 });
