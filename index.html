@@ -322,80 +322,100 @@
                           });
                         }
                       </script>
-                     <form id="api-form" action="/post" method="post">
-                      <!-- API Name -->
-                      <label for="api_name">API Name:</label>
-                      <input type="text" id="api_name" name="api_name" required><br><br>
-              
-                      <!-- Short Description -->
-                      <label for="short_description">Short Description:</label><br>
-                      <textarea id="short_description" name="short_description" rows="4" required></textarea><br><br>
-              
-                      <!-- Documentation URL -->
-                      <label for="doc_url">Documentation URL:</label><br>
-                      <input type="url" id="doc_url" name="doc_url" required><br><br>
-              
-                      <!-- Logo URL -->
-                      <label for="logo_url">Logo URL:</label><br>
-                      <input type="url" id="logo_url" name="logo_url" required><br><br>
-              
-                      <!-- Submit Button -->
-                      <button type="submit">Submit</button>
-                  </form>
-                    <!-- API Cards Container -->
-                    <div class="apis-container">
-                        <div class="apis-grid">
-                            <!-- API Cards will be dynamically added here -->
+                      <form id="api-form" action="/post" method="post" >
+                        <!-- API Name -->
+                        <div class="mb-4">
+                          <label for="api_name" class="block text-gray-400 text-sm font-bold mb-2">API Name:</label>
+                          <input type="text" id="api_name" name="api_name" placeholder="Enter API Name" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="150" required>
                         </div>
+                        <!-- Short Description -->
+                        <div class="mb-4">
+                          <label for="short_description" class="block text-gray-400 text-sm font-bold mb-2">Short Description:</label>
+                          <textarea id="short_description" name="short_description" placeholder="Enter Short Description" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" maxlength="400" rows="4" required></textarea>
+                        </div>
+                        <!-- Documentation URL -->
+                        <div class="mb-4">
+                          <label for="doc_url" class="block text-gray-400 text-sm font-bold mb-2">Documentation URL:</label>
+                          <input type="url" id="doc_url" name="doc_url" placeholder="Enter Documentation URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
+                        </div>
+                        <!-- Logo URL -->
+                        <div class="mb-4">
+                          <label for="logo_url" class="block text-gray-400 text-sm font-bold mb-2">Logo URL:</label>
+                          <input type="url" id="logo_url" name="logo_url" placeholder="Enter Logo URL" class="w-full px-3 py-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-800 border border-transparent focus:border-white/50" required>
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="mb-4 text-center">
+                          <button type="submit" class="relative inline-flex items-center h-10 gap-1 px-4 text-sm text-white font-semibold bg-blue border divide-x divide-gray-600 rounded-md hover:bg-yellow/90 focus:ring-2 focus:ring-black/20"> Submit API </button>
+                        </div>
+                      </form>
+                      <!-- API Cards Container -->
+                      <div class="apis-container">
+                        <div class="apis-grid">
+                          <!-- API Cards will be dynamically added here -->
+                        </div>
+                      </div>
+                      <div class="mt-2 md:mt-8 lg:mt-0 flex justify-center text-[#70757E] animate-bounce">
+                        <a href="index.html" class="cursor-pointer">
+                          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="rotate-90" xmlns="http://www.w3.org/2000/svg">
+                            <title>Arrow back to home</title>
+                            <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </a>
+                      </div>
                     </div>
-                    <script>
-                        document.getElementById('api-form').addEventListener('submit', function(event) {
-                            event.preventDefault();
-                            const formData = new FormData(event.target);
-                            const apiData = {
-                                api_name: formData.get('api_name'),
-                                short_description: formData.get('short_description'),
-                                doc_url: formData.get('doc_url'),
-                                logo_url: formData.get('logo_url')
-                            };
-                            fetch('/post', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(apiData)
-                            }).then(response => response.json()).then(data => {
-                                if (data.success) {
-                                    displayApiCard(apiData);
-                                } else {
-                                    alert('Failed to save API data.');
-                                }
-                            });
-                        });
-                
-                        function displayApiCard(apiData) {
-                            const apisGrid = document.querySelector('.apis-grid');
-                            const apiCard = document.createElement('div');
-                            apiCard.classList.add('api-card');
-                            apiCard.innerHTML = `
-                                <div class="api-card-content">
-                                    <img src="${apiData.logo_url}" alt="${apiData.api_name} Logo" class="api-logo">
-                                    <h3 class="api_name">${apiData.api_name}</h3>
-                                    <p class="api-description">${apiData.short_description}</p>
-                                    <a href="${apiData.doc_url}" target="_blank" class="api-doc-url">Documentation</a>
-                                </div>
-                            `;
-                            apisGrid.appendChild(apiCard);
-                        }
-                
-                        window.addEventListener('load', function() {
-                            fetch('/api/get').then(response => response.json()).then(data => {
-                                data.apis.forEach(api => {
-                                    displayApiCard(api);
-                                });
-                            });
-                        });
-                    </script>
+                  </div>
+                </main>
+              </div>
+              <script>
+                document.getElementById('api-form').addEventListener('submit', function(event) {
+                  event.preventDefault();
+                  const formData = new FormData(event.target);
+                  const apiData = {
+                    apiName: formData.get('api_name'),
+                    shortDescription: formData.get('short_description'),
+                    docUrl: formData.get('doc_url'),
+                    logoUrl: formData.get('logo_url')
+                  };
+                  fetch('/api/save', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(apiData)
+                  }).then(response => response.json()).then(data => {
+                    if (data.success) {
+                      displayApiCard(apiData);
+                    } else {
+                      alert('Failed to save API data.');
+                    }
+                  });
+                });
+
+                function displayApiCard(apiData) {
+                  const apisGrid = document.querySelector('.apis-grid');
+                  const apiCard = document.createElement('div');
+                  apiCard.classList.add('api-card');
+                  apiCard.innerHTML = `
+            
+																				<div class="api-card-content">
+																					<img src="${apiData.logoUrl}" alt="${apiData.apiName} Logo" class="api-logo">
+																						<h3 class="api_name">${apiData.apiName}</h3>
+																						<p class="api-description">${apiData.shortDescription}</p>
+																						<a href="${apiData.docUrl}" target="_blank" class="api-doc-url">Documentation</a>
+																					</div>
+        `;
+                  apisGrid.appendChild(apiCard);
+                }
+                window.addEventListener('load', function() {
+                  fetch('/api/get').then(response => response.json()).then(data => {
+                    data.apis.forEach(api => {
+                      displayApiCard(api);
+                    });
+                  });
+                });
+              </script>
+            </body>
 </html>
 </html>
 <section id="future-improvements" class="py-20 mx-8 max-w-7xl md:mx-10 lg:mx-20 xl:mx-auto">
